@@ -13,6 +13,8 @@ import java.text.NumberFormat;
  */
 public class MainActivity extends AppCompatActivity {
     int quantity = 0;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,8 +25,10 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        String priceMessage = "Free";
-        displayMessage(priceMessage);
+        int price = calculatePrice();
+
+        displayMessage(createOrderSummary(price));
+
 
 
     }
@@ -34,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void increment(View view) {
         quantity = quantity + 1;
-        display(quantity);
+        displayQuantity(quantity);
     }
 
     /**
@@ -42,12 +46,12 @@ public class MainActivity extends AppCompatActivity {
      */
     public void decrement(View view) {
         quantity = quantity - 1;
-        display(quantity);
+        displayQuantity(quantity);
     }
     /**
      * This method displays the given quantity value on the screen.
      */
-    private void display(int number) {
+    private void displayQuantity(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
     }
@@ -67,4 +71,24 @@ public class MainActivity extends AppCompatActivity {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         priceTextView.setText(message);
     }
+
+    /**
+     * Calculates the price of the order based on the current quantity.
+     *
+     * @return the price
+     */
+    private int calculatePrice() {
+        int pricePerCup = 5;
+        int price = quantity * pricePerCup;
+        return price;
+
+    }
+
+    private String createOrderSummary(int price) {
+        return "Name: Kaptain Kunal" + "\nQuantity: " + quantity + "\nTotal: $" + price + "\nThank You!";
+
+
+    }
+
+
 }
