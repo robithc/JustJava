@@ -56,20 +56,14 @@ public class MainActivity extends AppCompatActivity {
         quantityTextView.setText("" + number);
     }
 
-    /**
-     * This method displays the given price on the screen.
-     */
-    private void displayPrice(int number) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
-    }
+
 
     /**
      * This method displays the given text on the screen.
      */
     private void displayMessage(String message) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(message);
+        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
+        orderSummaryTextView.setText(message);
     }
 
     /**
@@ -78,14 +72,15 @@ public class MainActivity extends AppCompatActivity {
      * @return the price
      */
     private int calculatePrice() {
-        int pricePerCup = 5;
-        int price = quantity * pricePerCup;
-        return price;
+
+        return quantity * 5;
 
     }
 
     private String createOrderSummary(int price) {
-        return "Name: Kaptain Kunal" + "\nQuantity: " + quantity + "\nTotal: $" + price + "\nThank You!";
+        String priceMessage = "Name: Kaptain Kunal";
+        priceMessage += "\nQuantity: " + quantity + "\nTotal: $" + price + "\nThank You!";
+        return priceMessage;
 
 
     }
